@@ -7,7 +7,7 @@ This repository contains my personalized configuration for [LazyVim](https://git
 Follow the [LazyVim documentation](https://lazyvim.github.io/installation) to set up LazyVim. Once installed, clone this repository into your Neovim configuration directory:
 
 ```bash
-git clone <your-repo-url> ~/.config/nvim
+git clone git@github.com:Ororura/nvim.git ~/.config/nvim
 ```
 
 ## Features
