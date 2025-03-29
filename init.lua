@@ -8,8 +8,8 @@ vim.g.neovide_input_macos_alt_is_meta = true
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, silent = true }) -- 'gd' для перехода к определению
 
 -- Навигация по буферам с использованием <A-h> и <A-l>
-vim.keymap.set("n", "˙", ":bprevious<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "¬", ":bnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-h>", ":bprevious<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-l>", ":bnext<CR>", { noremap = true, silent = true })
 
 -- Переход к первому и последнему буферу
 vim.keymap.set("n", "<A-1>", ":bfirst<CR>", { noremap = true, silent = true })
@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 vim.keymap.set("n", "gk", vim.lsp.buf.references, { noremap = true, silent = true })
 -- Закрытие буфера
-vim.keymap.set("n", "∑", ":bd<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-w>", ":bd<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
