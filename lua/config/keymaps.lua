@@ -16,7 +16,7 @@ map("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 map("n", "gk", vim.lsp.buf.references, opts)
 
 -- Закрытие буфера
-map("n", "<A-w>", ":bd<CR>", opts)
+map("n", "<A-w>", ":bp <BAR> bd #<CR>", opts)
 
 -- LSP Code Actions
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Actions" })
