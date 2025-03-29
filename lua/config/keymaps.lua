@@ -1,3 +1,22 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+local map = vim.keymap.set
+
+local opts = { noremap = true, silent = true }
+
+-- Переход к определению
+map("n", "gd", vim.lsp.buf.definition, opts)
+
+-- Навигация по буферам
+map("n", "<A-h>", ":bprevious<CR>", opts)
+map("n", "<A-l>", ":bnext<CR>", opts)
+map("n", "<A-1>", ":bfirst<CR>", opts)
+map("n", "<A-9>", ":blast<CR>", opts)
+
+-- Диагностика
+map("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+map("n", "gk", vim.lsp.buf.references, opts)
+
+-- Закрытие буфера
+map("n", "<A-w>", ":bd<CR>", opts)
+
+-- LSP Code Actions
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Actions" })

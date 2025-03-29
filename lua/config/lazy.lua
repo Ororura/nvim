@@ -21,20 +21,6 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "plugins" },
 
-    {
-      "Mofiqul/vscode.nvim",
-      lazy = false,
-      priority = 1000,
-      config = function()
-        require("vscode").setup({
-          style = "dark", -- или "light"
-          transparent = false,
-          italic_comments = true,
-        })
-        vim.cmd("colorscheme vscode")
-      end,
-    },
-
     -- LSP configuration
     {
       "neovim/nvim-lspconfig", -- LSP plugin for Neovim
@@ -105,12 +91,4 @@ require("lazy").setup({
       },
     },
   },
-})
-
--- Автофикс eslint при сохранении
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
-  callback = function()
-    vim.lsp.buf.format()
-  end,
 })

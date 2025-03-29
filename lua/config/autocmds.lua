@@ -1,8 +1,39 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
---
--- Add any additional autocmds here
--- with `vim.api.nvim_create_autocmd`
---
--- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Форматирование перед сохранением (JS, TS, JSON)
+autocmd("BufWritePre", {
+  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json" },
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
+-- Автофикс eslint при сохранении
+autocmd("BufWritePre", {
+  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
+-- Форматирование через `conform` для JS/TS
+autocmd("BufWritePre", {
+  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+  callback = function()
+    require("conform").format()
+  end,
+})
+
+-- Форматирование перед сохранением (Go)
+autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
+-- Автосохранение при изменениях
+autocmd({ "InsertLeave", "TextChanged", "TextChangedI" }, {
+  pattern = "*",
+  command = "silent! write",
+})
