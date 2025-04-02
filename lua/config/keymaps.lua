@@ -13,7 +13,7 @@ map("n", "<A-9>", ":blast<CR>", opts)
 
 -- Диагностика
 map("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics" })
-map("n", "gk", vim.lsp.buf.references, opts)
+map("n", "gk", vim.lsp.buf.references, { noremap = true, silent = true, desc = "Show references" })
 
 -- Закрытие буфера
 map("n", "<A-w>", ":bp <BAR> bd #<CR>", opts)
