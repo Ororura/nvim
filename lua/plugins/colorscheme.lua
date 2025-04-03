@@ -13,9 +13,24 @@ return {
   },
 
   {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("vscode").setup({
+        style = "light", -- или "light"
+        transparent = false,
+        italic_comments = true,
+      })
+    end,
+  },
+
+  { "shaunsingh/nord.nvim" },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "nordfox",
     },
   },
 }

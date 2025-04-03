@@ -44,6 +44,14 @@ return {
           workingDirectories = { mode = "auto" },
         },
       })
+
+      -- C/C++ LSP server configuration (clangd)
+      lspconfig.clangd.setup({
+        cmd = { "clangd" },
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+        root_dir = lspconfig.util.root_pattern(".clangd", "compile_commands.json", "compile_flags.txt", ".git"),
+        settings = {},
+      })
     end,
   },
 }
