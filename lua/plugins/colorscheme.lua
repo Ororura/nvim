@@ -12,6 +12,7 @@ return {
     end,
   },
 
+  { "rose-pine/neovim", name = "rose-pine" },
   {
     "EdenEast/nightfox.nvim",
     lazy = false,
@@ -30,7 +31,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nordfox",
+      colorscheme = "rose-pine",
     },
   },
 }
