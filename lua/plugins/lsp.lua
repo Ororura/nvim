@@ -4,6 +4,13 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
+      -- Swift setup
+      lspconfig.sourcekit.setup({
+        cmd = { "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp" },
+        filetypes = { "swift", "objective-c", "objective-cpp" },
+        root_dir = lspconfig.util.root_pattern("Package.swift", ".git"),
+      })
+
       -- Go LSP server configuration (gopls)
       lspconfig.gopls.setup({
         cmd = { "gopls" },
