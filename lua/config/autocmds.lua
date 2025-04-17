@@ -1,39 +1,28 @@
+local conform = require("conform")
 local autocmd = vim.api.nvim_create_autocmd
 
--- Форматирование перед сохранением (JS, TS, JSON)
+-- Форматирование conform при сохранении для JS, TS, JSON
 autocmd("BufWritePre", {
   pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.json" },
   callback = function()
-    vim.lsp.buf.format()
+    conform.format()
   end,
 })
 
--- Автофикс eslint при сохранении
-autocmd("BufWritePre", {
-  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
-
--- Форматирование через `conform` для JS/TS
-autocmd("BufWritePre", {
-  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
-  callback = function()
-    require("conform").format()
-  end,
-})
-
--- Форматирование перед сохранением (Go)
+-- Форматирование Go через conform (если gofmt/goimports подключен)
 autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-    vim.lsp.buf.format()
+    conform.format()
   end,
 })
 
--- Автосохранение при изменениях
+-- Автосохранение при выходе из Insert и на изменения
 autocmd({ "InsertLeave", "TextChanged", "TextChangedI" }, {
   pattern = "*",
-  command = "silent! write",
+  callback = function()
+    if vim.bo.modified and vim.bo.filetype ~= "gitcommit" then
+      vim.cmd("silent! write")
+    end
+  end,
 })
