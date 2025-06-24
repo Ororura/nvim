@@ -43,3 +43,6 @@ vim.diagnostic.config({
 vim.cmd("colorscheme gruvbox")
 
 vim.g.netrw_liststyle = 3
+
+vim.opt.list = true
+vim.opt.listchars = { tab = '→ ' }  -- или '--', '>-', '▸ ', и т. д.
